@@ -1,113 +1,247 @@
-import Image from 'next/image'
+import {
+  Music,
+  Search,
+  Home,
+  Disc,
+  BoomBox,
+  Film,
+  User,
+  LogOut,
+  PlayCircle,
+  ListMusic,
+  Heart,
+  MoreVertical,
+  Play,
+  ChevronLast,
+  ChevronFirst,
+  Shuffle,
+  Repeat,
+  Volume2,
+} from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { songs } from "@/components/constants";
+import { Button } from "@/components/ui/button";
 
-export default function Home() {
+export default function HomePage() {
+  const bg = "/assets/Lead-image.png";
+  const now = "/assets/Rectangle_15.png";
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="flex flex-col min-h-screen h-max relative">
+      <div
+        className="absolute bg-cover bg-center opacity-5"
+        style={{
+          backgroundImage: `url(${bg})`,
+          width: "100%",
+          height: "100%",
+        }}
+      ></div>
+      <header className="z-10">
+        <nav className="w-full">
+          <div className="p-8 flex items-center">
+            <Music className="h-8 w-8" />
+            <div className="mx-12 flex items-center">
+              <span className="mx-4">
+                <Search className="h-4 w-4" />
+              </span>
+              <Input
+                className="border-0 rounded-full bg-transparent"
+                type="email"
+                placeholder="Search"
+              />
+            </div>
+          </div>
+        </nav>
+      </header>
+      <section className="w-full flex z-10">
+        <div className="ml-2 p-4 h-max">
+          <div
+            className={`flex flex-col rounded-full
+            bg-[#1A1E1F]/[0.4] py-2`}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <span className="p-2 mb-1">
+              <Button
+                className="rounded-full text-[#FACD66]"
+                variant={"ghost"}
+                size={"icon"}
+              >
+                <Home />
+              </Button>
+            </span>
+            <span className="p-2 mb-1">
+              <Button className=" rounded-full" variant={"ghost"} size={"icon"}>
+                <Disc />
+              </Button>
+            </span>
+            <span className="p-2 mb-1">
+              <Button className=" rounded-full" variant={"ghost"} size={"icon"}>
+                <BoomBox />
+              </Button>
+            </span>
+            <span className="p-2 mb-1">
+              <Button className=" rounded-full" variant={"ghost"} size={"icon"}>
+                <Film />
+              </Button>
+            </span>
+          </div>
+          <div
+            className={`mt-8 flex flex-col rounded-full
+          bg-[#1A1E1F]/[0.4] py-2`}
+          >
+            <span className="p-4 mb-1">
+              <User />
+            </span>
+            <span className="p-4 mb-1">
+              <LogOut />
+            </span>
+          </div>
+        </div>
+        <div className="flex-col ml-8 w-full mr-16">
+          <div id="details" className="mt-4 flex">
+            <img src={bg} alt="" />
+            <div className="ml-8 flex-col justify-center">
+              <h1 className="mt-24 text-4xl font-semibold text-sky-200">
+                Tomorrow's tunes
+              </h1>
+              <h2 className="mt-4 text-sm font-light tracking-widest text-white max-w-2xl">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Repudiandae soluta aut maxime non culpa eius?
+              </h2>
+              <p className="mt-4 text-sm font-light tracking-widest text-white">
+                64 songs ~ 16 hours+
+              </p>
+
+              <div className="mt-8">
+                <Button className="rounded-full bg-[#33373B5E]/[0.2] hover:bg-[#33373B5E]">
+                  <PlayCircle className="mr-2 h-4 w-4 text-[#FACD66]" />
+                  <p className="text-sm font-light tracking-widest text-white">
+                    Play all
+                  </p>
+                </Button>
+                <Button className="ml-4 rounded-full bg-[#33373B5E]/[0.2] hover:bg-[#33373B5E]">
+                  <ListMusic className="mr-2 h-4 w-4 text-[#FACD66]" />
+                  <p className="text-sm font-light tracking-widest text-white">
+                    Add to Collection
+                  </p>
+                </Button>
+                <Button
+                  className="ml-4 rounded-full bg-[#33373B5E]/[0.2] hover:bg-[#33373B5E]"
+                  variant="ghost"
+                  size="icon"
+                >
+                  <Heart className="h-4 w-4 text-red-500" />
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 min-w-full">
+            {songs.map((song: any, index: number) => (
+              <div key={index}>
+                <div className=" mb-3 flex px-2.5 py-2.5 rounded-2xl bg-[#33373B5E]/[0.2] hover:bg-[#33373B5E] items-center justify-between">
+                  <div className="flex items-center">
+                    <img
+                      className="object-cover h-10 w-10"
+                      src={song.image}
+                      alt=""
+                    />
+                    <span className="ml-4">
+                      <Heart className="h-5 w-5 hover:text-red-500 cursor-pointer" />
+                    </span>
+                  </div>
+                  <div className="w-[200px] flex">
+                    <p className="text-sm font-light tracking-widest text-white max-w-2xl">
+                      {song.name}
+                    </p>
+                  </div>
+                  <div className="w-[100px] flex">
+                    <p className="text-sm font-light tracking-widest text-white max-w-2xl">
+                      {song.type}
+                    </p>
+                  </div>
+                  <p className="text-sm font-light tracking-widest text-white max-w-2xl">
+                    {song.duration}
+                  </p>
+                  <span className="px-2.5 py-2.5 mr-4">
+                    <MoreVertical className="text-[#FACD66] h-4 w-4 hover:text-red-500 cursor-pointer" />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <div className="z-50  fixed h-24 w-full bottom-0 bg-[#33373B5E]/[0.1]  border-t backdrop-filter backdrop-blur-lg flex items-center">
+        <div className="max-w-7xl mx-auto flex items-center w-full">
+          <div className="w-[20%] flex items-center pt-4">
+            <img className="object-cover h-16 w-16" src={now} alt="" />
+            <span className="ml-4 pb-4">
+              <h2 className="text-md font-bold text-white max-w-2xl">
+                Seasons in
+              </h2>
+              <p className="text-xs font-light text-white max-w-2xl">James</p>
+            </span>
+          </div>
+          <div className="w-[60%] flex flex-col">
+            <div id="icons" className="flex justify-center">
+              <Button
+                className="rounded-full mx-8"
+                variant={"ghost"}
+                size={"icon"}
+              >
+                <Shuffle />
+              </Button>
+              <Button
+                className="rounded-full mx-8"
+                variant={"ghost"}
+                size={"icon"}
+              >
+                <ChevronFirst />
+              </Button>
+              <Button
+                className="rounded-full bg-[#FACD66] mx-8"
+                variant={"ghost"}
+                size={"icon"}
+              >
+                <Play />
+              </Button>
+              <Button
+                className="rounded-full mx-8"
+                variant={"ghost"}
+                size={"icon"}
+              >
+                <ChevronLast />
+              </Button>
+              <Button
+                className="rounded-full mx-8"
+                variant={"ghost"}
+                size={"icon"}
+              >
+                <Repeat />
+              </Button>
+            </div>
+            <div className="mt-4 mx-8">
+              <div className="w-full flex">
+                <div className="h-[3px] w-[30%] bg-[#FACD66] rounded-l-md"></div>
+
+                <div className="h-[3px] w-[60%] bg-[#33373B5E] rounded-r-md"></div>
+              </div>
+            </div>
+          </div>
+          <div className="w-[20%] flex items-center">
+            <Button
+              className="rounded-full mx-2 "
+              variant={"ghost"}
+              size={"icon"}
+            >
+              <Volume2 className="h-4 w-4 " />
+            </Button>
+            <div className="w-full flex">
+              <div className="h-[2px] w-[60%] bg-[#FACD66] rounded-l-md"></div>
+
+              <div className="h-[3px] w-[40%] bg-[#33373B5E] rounded-r-md"></div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }
